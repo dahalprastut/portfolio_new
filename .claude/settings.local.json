@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.prastutdahal.com)",
+      "WebFetch(domain:cuberto.com)",
+      "Bash(npx next build:*)",
+      "Bash(timeout 15 npx next dev:*)",
+      "Bash(pnpm add:*)"
+    ]
+  }
+}

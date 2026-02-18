@@ -1,0 +1,590 @@
+/* ============================================================================
+   PRASTUT DAHAL PORTFOLIO — DESIGN TOKENS
+   Cuberto Editorial x Apple Glassmorphism
+
+   Tech: Next.js 16 · React 19 · Tailwind CSS v4 · TypeScript
+
+   Usage: Import these tokens in globals.css via @import, then expose
+   them through Tailwind v4's @theme inline {} block.
+   ============================================================================ */
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   1. COLOR SYSTEM
+
+   Philosophy: High-contrast dark canvas with warm accent punctuation.
+   Dark backgrounds let glassmorphism surfaces breathe and glow.
+   Light mode reserved for case study detail pages only.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Core Canvas ── */
+  --color-void:           #030303;   /* deepest black — page bg */
+  --color-surface:        #0A0A0A;   /* elevated surface — cards, sections */
+  --color-surface-raised: #111111;   /* highest elevation dark surface */
+  --color-surface-subtle: #1A1A1A;   /* subtle differentiation */
+
+  /* ── Light Mode (Case Study Pages) ── */
+  --color-paper:          #FAFAF8;   /* warm off-white page bg */
+  --color-paper-raised:   #FFFFFF;   /* pure white elevated surfaces */
+  --color-paper-subtle:   #F0EFEB;   /* subtle differentiation on light */
+
+  /* ── Foreground / Text ── */
+  --color-ink:            #EDEDED;   /* primary text on dark */
+  --color-ink-secondary:  #999999;   /* secondary text on dark */
+  --color-ink-tertiary:   #666666;   /* tertiary / labels on dark */
+  --color-ink-ghost:      #333333;   /* ghost text / watermarks on dark */
+
+  --color-ink-dark:       #1A1A1A;   /* primary text on light */
+  --color-ink-dark-secondary: #555555; /* secondary text on light */
+  --color-ink-dark-tertiary:  #888888; /* tertiary on light */
+
+  /* ── Accent: Champagne ──
+     A warm champagne/brass tone that reads as a premium neutral
+     against the pure black canvas. Sophisticated and design-forward. */
+  --color-accent:         #C9A87C;   /* primary accent — CTAs, links */
+  --color-accent-hover:   #B8976B;   /* accent darkened for hover */
+  --color-accent-soft:    rgba(201, 168, 124, 0.15); /* accent glow/bg */
+  --color-accent-glow:    rgba(201, 168, 124, 0.4);  /* accent glow for glass */
+
+  /* ── Accent Secondary: Stone ──
+     Neutral warm gray for experience tags and secondary labels.
+     Legible on dark without competing with the champagne accent. */
+  --color-accent-blue:    #8A8A8A;
+  --color-accent-blue-soft: rgba(138, 138, 138, 0.12);
+
+  /* ── Neutral Scale (Zinc-based) ── */
+  --color-neutral-50:  #FAFAFA;
+  --color-neutral-100: #F4F4F5;
+  --color-neutral-200: #E4E4E7;
+  --color-neutral-300: #D4D4D8;
+  --color-neutral-400: #A1A1AA;
+  --color-neutral-500: #71717A;
+  --color-neutral-600: #52525B;
+  --color-neutral-700: #3F3F46;
+  --color-neutral-800: #27272A;
+  --color-neutral-900: #18181B;
+  --color-neutral-950: #09090B;
+
+  /* ── Semantic ── */
+  --color-success:     #22C55E;
+  --color-warning:     #F59E0B;
+  --color-error:       #EF4444;
+  --color-info:        #3B82F6;
+
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     2. TYPOGRAPHY
+
+     Display: Instrument Serif — dramatic editorial serif with high stroke
+     contrast. Used at massive sizes (4rem–10rem) for hero headlines and
+     section titles. Evokes Cuberto's typographic confidence.
+
+     Body: Manrope — geometric variable-weight sans-serif. Clean and modern,
+     used by Cuberto as their fallback. Excellent legibility at all sizes.
+
+     Mono: JetBrains Mono — for technical labels, code, and tags.
+     ─────────────────────────────────────────────────────────────────────── */
+
+  /* ── Font Families (loaded via next/font/google) ── */
+  --font-display:     var(--font-syne), 'Arial', sans-serif;
+  --font-body:        var(--font-inter), 'Helvetica Neue', sans-serif;
+  --font-mono:        var(--font-jetbrains-mono), 'Consolas', monospace;
+
+  /* ── Type Scale ──
+     Based on a 1.333 (perfect fourth) ratio with manual adjustments
+     for dramatic display sizes. Desktop-first, scaled down at breakpoints. */
+
+  /* Display — massive editorial headlines */
+  --text-display-hero:    clamp(3.5rem, 8vw + 1rem, 10rem);     /* Hero name/title */
+  --text-display-section: clamp(2.5rem, 5vw + 1rem, 6rem);      /* Section headers */
+  --text-display-project: clamp(2rem, 4vw + 0.5rem, 4.5rem);    /* Project titles */
+
+  /* Headings */
+  --text-h1:    clamp(2rem, 3vw + 0.5rem, 3.5rem);    /* 56px max */
+  --text-h2:    clamp(1.5rem, 2vw + 0.5rem, 2.5rem);  /* 40px max */
+  --text-h3:    clamp(1.25rem, 1.5vw + 0.5rem, 1.75rem); /* 28px max */
+  --text-h4:    1.25rem;  /* 20px */
+
+  /* Body */
+  --text-body-xl:   1.375rem;   /* 22px — hero subtext */
+  --text-body-lg:   1.125rem;   /* 18px — intro paragraphs */
+  --text-body:      1rem;       /* 16px — default body */
+  --text-body-sm:   0.875rem;   /* 14px — captions, metadata */
+
+  /* Utility */
+  --text-caption:   0.75rem;    /* 12px — tiny labels */
+  --text-overline:  0.6875rem;  /* 11px — overline text */
+
+  /* ── Line Heights ── */
+  --leading-none:    1;
+  --leading-tight:   1.1;
+  --leading-snug:    1.25;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose:   1.8;
+
+  /* ── Letter Spacing ── */
+  --tracking-tighter: -0.04em;  /* display headlines */
+  --tracking-tight:   -0.025em; /* headings */
+  --tracking-normal:  0;
+  --tracking-wide:    0.05em;   /* overlines, labels */
+  --tracking-wider:   0.1em;    /* spaced-out caps */
+  --tracking-widest:  0.2em;    /* decorative text */
+
+  /* ── Font Weights ── */
+  --weight-light:     300;
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+  --weight-extrabold: 800;
+
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     3. SPACING & LAYOUT
+
+     Philosophy: Cuberto's extreme generosity with whitespace.
+     Sections breathe with 8–25rem vertical padding.
+     Uses an 8px base grid for all measurements.
+     ─────────────────────────────────────────────────────────────────────── */
+
+  /* ── Base Grid Unit (8px) ── */
+  --space-unit:  0.5rem;  /* 8px */
+
+  /* ── Spacing Scale ── */
+  --space-0:   0;
+  --space-1:   0.25rem;   /*  4px */
+  --space-2:   0.5rem;    /*  8px */
+  --space-3:   0.75rem;   /* 12px */
+  --space-4:   1rem;      /* 16px */
+  --space-5:   1.25rem;   /* 20px */
+  --space-6:   1.5rem;    /* 24px */
+  --space-8:   2rem;      /* 32px */
+  --space-10:  2.5rem;    /* 40px */
+  --space-12:  3rem;      /* 48px */
+  --space-16:  4rem;      /* 64px */
+  --space-20:  5rem;      /* 80px */
+  --space-24:  6rem;      /* 96px */
+  --space-32:  8rem;      /* 128px */
+  --space-40:  10rem;     /* 160px */
+  --space-48:  12rem;     /* 192px */
+  --space-64:  16rem;     /* 256px */
+
+  /* ── Section Spacing (Cuberto-scale) ── */
+  --section-gap-sm:  clamp(4rem, 8vw, 8rem);       /* tight sections */
+  --section-gap-md:  clamp(6rem, 12vw, 12rem);      /* standard sections */
+  --section-gap-lg:  clamp(8rem, 16vw, 16rem);      /* breathing room */
+  --section-gap-xl:  clamp(10rem, 20vw, 25rem);     /* hero-level spacing */
+
+  /* ── Container ── */
+  --container-max:    1440px;
+  --container-px:     clamp(1.5rem, 5vw, 6rem);  /* responsive gutter */
+  --container-narrow: 960px;   /* for text-heavy content */
+  --container-wide:   1600px;  /* for full-bleed sections */
+
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     4. GLASSMORPHISM SYSTEM
+
+     Apple-inspired frosted glass surfaces. The core visual identity
+     element that makes the portfolio feel premium and modern.
+
+     Three tiers: subtle, standard, and prominent.
+     Each tier has dark and light variants.
+     ─────────────────────────────────────────────────────────────────────── */
+
+  /* ── Glass Backgrounds (Dark Context) ── */
+  --glass-bg-subtle:    rgba(255, 255, 255, 0.03);
+  --glass-bg:           rgba(255, 255, 255, 0.06);
+  --glass-bg-prominent: rgba(255, 255, 255, 0.10);
+  --glass-bg-solid:     rgba(255, 255, 255, 0.15);
+
+  /* ── Glass Backgrounds (Light Context) ── */
+  --glass-bg-light-subtle:    rgba(255, 255, 255, 0.50);
+  --glass-bg-light:           rgba(255, 255, 255, 0.65);
+  --glass-bg-light-prominent: rgba(255, 255, 255, 0.80);
+
+  /* ── Glass Borders ── */
+  --glass-border-subtle:  rgba(255, 255, 255, 0.06);
+  --glass-border:         rgba(255, 255, 255, 0.10);
+  --glass-border-strong:  rgba(255, 255, 255, 0.18);
+  --glass-border-light:   rgba(0, 0, 0, 0.06);
+
+  /* ── Backdrop Blur Levels ── */
+  --glass-blur-sm:   8px;
+  --glass-blur-md:   16px;
+  --glass-blur-lg:   24px;
+  --glass-blur-xl:   40px;
+  --glass-blur-2xl:  64px;
+
+  /* ── Glass Saturation (for backdrop-filter) ── */
+  --glass-saturate:  saturate(180%);
+
+  /* ── Glass Composite Shortcuts ──
+     Use these as backdrop-filter values */
+  --glass-filter-subtle:    blur(var(--glass-blur-sm)) var(--glass-saturate);
+  --glass-filter:           blur(var(--glass-blur-md)) var(--glass-saturate);
+  --glass-filter-prominent: blur(var(--glass-blur-xl)) var(--glass-saturate);
+
+  /* ── Glass Inner Glow (top highlight) ── */
+  --glass-inner-glow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  --glass-inner-glow-strong: inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     5. SHADOWS & ELEVATION
+
+     Layered shadow system for depth. Each level uses multiple shadow
+     layers for realistic diffusion, matching Apple's shadow approach.
+     ─────────────────────────────────────────────────────────────────────── */
+
+  --shadow-xs:  0 1px 2px rgba(0, 0, 0, 0.3);
+
+  --shadow-sm:  0 1px 2px rgba(0, 0, 0, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.15);
+
+  --shadow-md:  0 2px 4px rgba(0, 0, 0, 0.15),
+                0 4px 8px rgba(0, 0, 0, 0.12),
+                0 8px 16px rgba(0, 0, 0, 0.08);
+
+  --shadow-lg:  0 4px 8px rgba(0, 0, 0, 0.12),
+                0 8px 16px rgba(0, 0, 0, 0.10),
+                0 16px 32px rgba(0, 0, 0, 0.08),
+                0 32px 64px rgba(0, 0, 0, 0.06);
+
+  --shadow-xl:  0 8px 16px rgba(0, 0, 0, 0.10),
+                0 16px 32px rgba(0, 0, 0, 0.08),
+                0 32px 64px rgba(0, 0, 0, 0.06),
+                0 64px 128px rgba(0, 0, 0, 0.04);
+
+  /* ── Glow Shadows (for accent elements) ── */
+  --shadow-glow-accent: 0 0 20px rgba(201, 168, 124, 0.3),
+                        0 0 60px rgba(201, 168, 124, 0.1);
+
+  /* ── Region Palette: Nepal ── */
+  --color-region-nepal:        #DC143C;
+  --color-region-nepal-muted:  #A01030;
+  --color-region-nepal-soft:   rgba(220, 20, 60, 0.14);
+  --color-region-nepal-glow:   rgba(220, 20, 60, 0.35);
+
+  /* ── Region Palette: US ── */
+  --color-region-us:           #60A5FA;
+  --color-region-us-muted:     #3B82F6;
+  --color-region-us-soft:      rgba(96, 165, 250, 0.14);
+  --color-region-us-glow:      rgba(96, 165, 250, 0.35);
+
+  --shadow-glow-soft:   0 0 30px rgba(255, 255, 255, 0.05),
+                        0 0 60px rgba(255, 255, 255, 0.02);
+
+  /* ── Light Mode Shadows ── */
+  --shadow-light-sm: 0 1px 3px rgba(0, 0, 0, 0.06),
+                     0 2px 6px rgba(0, 0, 0, 0.04);
+
+  --shadow-light-md: 0 2px 8px rgba(0, 0, 0, 0.06),
+                     0 4px 16px rgba(0, 0, 0, 0.04),
+                     0 8px 32px rgba(0, 0, 0, 0.02);
+
+  --shadow-light-lg: 0 4px 12px rgba(0, 0, 0, 0.05),
+                     0 8px 24px rgba(0, 0, 0, 0.04),
+                     0 16px 48px rgba(0, 0, 0, 0.03),
+                     0 32px 80px rgba(0, 0, 0, 0.02);
+
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     6. BORDER RADIUS
+
+     Rounded corners follow Apple's design language — generous radii
+     for cards and modals, subtle rounding for buttons and inputs.
+     ─────────────────────────────────────────────────────────────────────── */
+
+  --radius-xs:    4px;
+  --radius-sm:    6px;
+  --radius-md:    10px;
+  --radius-lg:    14px;
+  --radius-xl:    20px;
+  --radius-2xl:   28px;
+  --radius-3xl:   36px;
+  --radius-full:  9999px;  /* pill shape */
+
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     7. ANIMATION & MOTION
+
+     Cuberto-inspired easing and timing. Every transition feels physical
+     and organic — never linear, never mechanical.
+
+     Primary easing is a custom ease-out-back that creates a subtle
+     "snap into place" feel without being bouncy.
+     ─────────────────────────────────────────────────────────────────────── */
+
+  /* ── Easing Curves ── */
+  --ease-out-expo:   cubic-bezier(0.16, 1, 0.3, 1);      /* primary — Cuberto's signature */
+  --ease-out-quint:  cubic-bezier(0.22, 1, 0.36, 1);     /* smooth deceleration */
+  --ease-out-back:   cubic-bezier(0.34, 1.56, 0.64, 1);  /* slight overshoot */
+  --ease-in-out:     cubic-bezier(0.65, 0, 0.35, 1);     /* symmetric */
+  --ease-in-expo:    cubic-bezier(0.7, 0, 0.84, 0);      /* accelerate in */
+  --ease-spring:     cubic-bezier(0.175, 0.885, 0.32, 1.275); /* spring-like */
+
+  /* ── Duration Scale ── */
+  --duration-instant:  100ms;
+  --duration-fast:     200ms;
+  --duration-normal:   350ms;
+  --duration-smooth:   500ms;
+  --duration-slow:     800ms;
+  --duration-dramatic: 1200ms;
+  --duration-glacial:  2000ms;
+
+  /* ── Composite Transitions ── */
+  --transition-colors:   color var(--duration-fast) var(--ease-out-expo),
+                         background-color var(--duration-fast) var(--ease-out-expo),
+                         border-color var(--duration-fast) var(--ease-out-expo);
+
+  --transition-transform: transform var(--duration-normal) var(--ease-out-expo);
+
+  --transition-all:      all var(--duration-normal) var(--ease-out-expo);
+
+  --transition-glass:    backdrop-filter var(--duration-smooth) var(--ease-out-quint),
+                         background-color var(--duration-smooth) var(--ease-out-quint),
+                         box-shadow var(--duration-smooth) var(--ease-out-quint);
+
+  /* ── Stagger Delays (for sequential reveal animations) ── */
+  --stagger-1: 0ms;
+  --stagger-2: 60ms;
+  --stagger-3: 120ms;
+  --stagger-4: 180ms;
+  --stagger-5: 240ms;
+  --stagger-6: 300ms;
+  --stagger-7: 360ms;
+  --stagger-8: 420ms;
+
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     8. Z-INDEX SCALE
+     ─────────────────────────────────────────────────────────────────────── */
+
+  --z-base:       0;
+  --z-dropdown:   10;
+  --z-sticky:     20;
+  --z-navbar:     30;
+  --z-overlay:    40;
+  --z-modal:      50;
+  --z-toast:      60;
+  --z-cursor:     9999;
+
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     9. BREAKPOINTS (reference — Tailwind v4 handles these natively)
+
+     Mobile-first approach. Design for 375px, enhance upward.
+     ─────────────────────────────────────────────────────────────────────── */
+
+  --bp-sm:   640px;    /* landscape phones */
+  --bp-md:   768px;    /* tablets */
+  --bp-lg:   1024px;   /* small laptops */
+  --bp-xl:   1280px;   /* desktops */
+  --bp-2xl:  1536px;   /* large monitors */
+  --bp-3xl:  1920px;   /* ultrawide */
+
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     10. CUSTOM CURSOR
+
+     Cuberto-style custom cursor with multiple states.
+     Sizes defined here, behavior implemented in React component.
+     ─────────────────────────────────────────────────────────────────────── */
+
+  --cursor-size-default:  16px;
+  --cursor-size-hover:    48px;
+  --cursor-size-text:     4px;    /* thin line for text */
+  --cursor-size-action:   80px;   /* large circle for CTAs */
+  --cursor-size-media:    120px;  /* preview circle for project cards */
+  --cursor-color:         rgba(255, 255, 255, 0.9);
+  --cursor-blend:         exclusion;
+
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     11. ASPECT RATIOS
+     ─────────────────────────────────────────────────────────────────────── */
+
+  --ratio-project-card:   500 / 675;    /* Cuberto project card ratio */
+  --ratio-hero-media:     16 / 10;      /* hero image/video */
+  --ratio-case-study:     16 / 9;       /* case study hero */
+  --ratio-gallery-thumb:  4 / 5;        /* gallery thumbnails */
+  --ratio-square:         1 / 1;
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   12. GLASSMORPHISM UTILITY CLASSES
+
+   Pre-composed glass surface classes for direct use in components.
+   These combine background, blur, border, and shadow into ready-to-use styles.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur-md)) var(--glass-saturate);
+  -webkit-backdrop-filter: blur(var(--glass-blur-md)) var(--glass-saturate);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-inner-glow), var(--shadow-md);
+}
+
+.glass-subtle {
+  background: var(--glass-bg-subtle);
+  backdrop-filter: blur(var(--glass-blur-sm)) var(--glass-saturate);
+  -webkit-backdrop-filter: blur(var(--glass-blur-sm)) var(--glass-saturate);
+  border: 1px solid var(--glass-border-subtle);
+  box-shadow: var(--glass-inner-glow);
+}
+
+.glass-prominent {
+  background: var(--glass-bg-prominent);
+  backdrop-filter: blur(var(--glass-blur-xl)) var(--glass-saturate);
+  -webkit-backdrop-filter: blur(var(--glass-blur-xl)) var(--glass-saturate);
+  border: 1px solid var(--glass-border-strong);
+  box-shadow: var(--glass-inner-glow-strong), var(--shadow-lg);
+}
+
+.glass-light {
+  background: var(--glass-bg-light);
+  backdrop-filter: blur(var(--glass-blur-lg)) var(--glass-saturate);
+  -webkit-backdrop-filter: blur(var(--glass-blur-lg)) var(--glass-saturate);
+  border: 1px solid var(--glass-border-light);
+  box-shadow: var(--shadow-light-md);
+}
+
+/* ── Glass Button Variant ── */
+.glass-button {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur-md)) var(--glass-saturate);
+  -webkit-backdrop-filter: blur(var(--glass-blur-md)) var(--glass-saturate);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-inner-glow), var(--shadow-sm);
+  transition:
+    background-color var(--duration-fast) var(--ease-out-expo),
+    border-color var(--duration-fast) var(--ease-out-expo),
+    box-shadow var(--duration-normal) var(--ease-out-expo),
+    transform var(--duration-normal) var(--ease-out-expo);
+}
+
+.glass-button:hover {
+  background: var(--glass-bg-prominent);
+  border-color: var(--glass-border-strong);
+  box-shadow: var(--glass-inner-glow-strong), var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.glass-button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: var(--glass-inner-glow), var(--shadow-xs);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   13. ANIMATION KEYFRAMES
+
+   Reusable keyframe definitions for scroll-triggered reveals,
+   text animations, and page transitions.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Cuberto text reveal — characters slide up from below with stagger */
+@keyframes text-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(110%) rotateX(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+  }
+}
+
+/* Marquee / infinite scroll for section headers */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Navbar reveal on scroll */
+@keyframes navbar-reveal {
+  from { transform: translateY(-100%); }
+  to   { transform: translateY(0); }
+}
+
+/* Ripple fill — Cuberto button hover effect */
+@keyframes ripple-fill {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+/* Subtle float for decorative elements */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+/* Rotate for decorative circular elements */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Glass shimmer effect */
+@keyframes glass-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Cursor scale pulse */
+@keyframes cursor-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50%      { transform: translate(-50%, -50%) scale(1.15); }
+}
+
+/* Globe country toast animations */
+@keyframes toast-enter {
+  from { opacity: 0; transform: scale(0.82) translateY(6px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes toast-exit {
+  from { opacity: 1; transform: scale(1) translateY(0); }
+  to   { opacity: 0; transform: scale(0.88) translateY(-4px); }
+}
