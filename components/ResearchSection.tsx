@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useRegion } from "@/lib/region-context";
 import { research } from "@/lib/data";
 import TechTag from "./TechTag";
+import CoronalLoop3D from "./CoronalLoop3D";
 
 export default function ResearchSection() {
   const { activeRegion } = useRegion();
@@ -34,18 +35,33 @@ export default function ResearchSection() {
                 key={i}
                 className="glass rounded-[28px] p-8 md:p-12 space-y-6"
               >
-                <h3 className="font-[var(--font-display)] text-[clamp(1.5rem,2vw+0.5rem,2.5rem)] text-[var(--color-ink)]">
-                  {item.title}
-                </h3>
-                <p className="font-[var(--font-body)] text-[var(--text-body-lg)] text-[var(--color-ink-secondary)] leading-relaxed max-w-2xl">
-                  {item.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {item.tags.map((tag) => (
-                    <TechTag key={tag} variant="blue">
-                      {tag}
-                    </TechTag>
-                  ))}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                  <div className="space-y-6">
+                    <h3 className="font-[var(--font-display)] text-[clamp(1.5rem,2vw+0.5rem,2.5rem)] text-[var(--color-ink)]">
+                      {item.title}
+                    </h3>
+                    <p className="font-[var(--font-body)] text-[var(--text-body-lg)] text-[var(--color-ink-secondary)] leading-relaxed max-w-2xl">
+                      {item.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {item.tags.map((tag) => (
+                        <TechTag key={tag} variant="blue">
+                          {tag}
+                        </TechTag>
+                      ))}
+                    </div>
+                  </div>
+
+                  {item.title === "Coronal Loop Visualization" && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                      className="w-full h-[400px] rounded-[20px] overflow-hidden"
+                    >
+                      <CoronalLoop3D />
+                    </motion.div>
+                  )}
                 </div>
               </div>
             ))}
